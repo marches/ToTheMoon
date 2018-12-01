@@ -6,9 +6,9 @@ module ALU
   input[15:0]   B,
   input[2:0]    command
 );
-wire[15:0] resultXOR;
-wire[29:0] product;
-wire[15:0] C,D;
+wire[15:0] resultAND;
+reg[29:0] product;
+reg[14:0] C,D;
 
 always @(command,A,B) begin
   case(command)
@@ -26,12 +26,13 @@ always @(A,B,command)begin
   if (result==0)
     zero <= 1;
   //convert to 2s compliment
-  if (A[15] == 1) begin
-    C <= -(!A);
-  end
-  if (B[15] == 1) begin
-    D <= -(!A);
-  end
+  if (A[15] == 1) begin  C <= -(!A); end
+  else C <= A;
+  if (B[15] == 1) begin  D <= -(!B); end
+  else D <= B;
+
+  //Multiply
+  product <= C*D;
 end
 
 
@@ -40,14 +41,12 @@ end
 genvar i;
 generate
 
-for (i = 0; i < 15; i = i + 1)
+for (i = 0; i < 14; i = i + 1)
   begin:genblock
-      and _orgate(resultAND[i], A[i], B[i]);
+      and _andgate(resultAND[i], C[i], D[i]);
   end
 endgenerate
 
-//Multiply
-product <= A[15:1]*B[15:1];
 
 
 
