@@ -1,5 +1,5 @@
 $date
-	Mon Dec  3 21:02:01 2018
+	Tue Dec  4 10:50:49 2018
 $end
 $version
 	Icarus Verilog
@@ -24,7 +24,8 @@ $var wire 15 + resultAND [14:0] $end
 $var reg 15 , C [14:0] $end
 $var reg 15 - D [14:0] $end
 $var reg 30 . product [29:0] $end
-$var reg 15 / result [14:0] $end
+$var reg 15 / res [14:0] $end
+$var reg 15 0 result [14:0] $end
 $scope begin genblock[0] $end
 $upscope $end
 $scope begin genblock[1] $end
@@ -53,16 +54,19 @@ $scope begin genblock[12] $end
 $upscope $end
 $scope begin genblock[13] $end
 $upscope $end
+$scope begin genblock[14] $end
+$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
+bx 0
 bx /
 b0 .
 b0 -
 b0 ,
-bz00000000000000 +
+b0 +
 bx *
 b0 )
 b0 (
@@ -77,21 +81,22 @@ $end
 #50
 1%
 #100
-bz00000000010000 +
-b1111111111110010000 .
-b10000 -
-b111111111111001 ,
+b111111111111100 +
+b111111111111100000000000000011 .
+b111111111111101 -
+b111111111111111 ,
 0%
-b1000 '
-b0 $
-b0 *
-b100000 #
-b100000 )
-b1111111111110000 "
-b1111111111110000 (
+b111111111111010 '
+b100 $
+b100 *
+b1111111111111000 #
+b1111111111111000 )
+b1111111111111100 "
+b1111111111111100 (
 #150
-b1001 !
-b1001 /
+b11 !
+b11 /
+b11 0
 1%
 #200
 0%
@@ -130,12 +135,14 @@ b1001 /
 #1050
 1%
 #1100
-bz00000000000001 +
+b0 +
 b10011000010010010001111 .
 b111111101100111 -
 b10011001 ,
 0%
 b111111111111111 '
+b0 $
+b0 *
 b1111111011001100 #
 b1111111011001100 )
 b100110011 "
@@ -144,6 +151,7 @@ b100110011 (
 #1150
 b0 !
 b0 /
+b0 0
 1%
 #1200
 0%
