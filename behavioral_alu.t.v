@@ -23,7 +23,7 @@ module behavioral_alu_tester();
 	initial clk = 0;
 	always #50 clk =! clk;
 
-	ALU dut(.A(A), .B(B), .result(Res), .command(Op),.clk(clk));
+	ALU dut(.A(A), .B(B), .res(Res), .command(Op),.clk(clk));
 	reg dut_passed = 1;
 
 	initial begin
@@ -41,11 +41,11 @@ module behavioral_alu_tester();
 	#100
 	//A = 16'b0111111111111111; // 16383 plus a parity bit
 	//B = 16'b0010100010001110; // 13383 plus a parity bit
-	A[15:1] = -15'd8;
-	B[15:1] = 15'd16;
+	A[15:1] = 15'd8;
+	B[15:1] = -15'd5;
 	A[0] = 0;
 	B[0] = 0;
-	Op = `AD;
+	Op = `SU;
 	//testRes = 15'b111010001000110; // 29766 (truncated due to overflow)
 	testRes = A[15:1]+B[15:1];
 	#1000
