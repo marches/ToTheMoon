@@ -29,9 +29,9 @@ end
 genvar i;
 generate
 
-for (i = 0; i < 14; i = i + 1)
+for (i = 0; i < 15; i = i + 1)
   begin:genblock
-      and _andgate(resultAND[i], C[i], D[i]);
+      and _andgate(resultAND[i], A[i+1], B[i+1]);
   end
 endgenerate
 
@@ -45,7 +45,7 @@ always @(posedge clk)begin
   5: begin result = C/D; end //DV0
   6: begin result = C%D; end //DV1
   endcase
-  if (result[14] == 1) res = ~(-result);
+  if (result[14] == 1 && command != 2) res = ~(-result);
   else res = result;
 end
 

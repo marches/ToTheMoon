@@ -41,11 +41,13 @@ module behavioral_alu_tester();
 	#100
 	//A = 16'b0111111111111111; // 16383 plus a parity bit
 	//B = 16'b0010100010001110; // 13383 plus a parity bit
-	A[15:1] = 15'd8;
-	B[15:1] = -15'd5;
+	A[15:1] = -15'd2;
+	B[15:1] = -15'd4;
 	A[0] = 0;
 	B[0] = 0;
-	Op = `SU;
+	if(A<0) A = A-1;
+	if(B<0) B = B-1;
+	Op = `MP1;
 	//testRes = 15'b111010001000110; // 29766 (truncated due to overflow)
 	testRes = A[15:1]+B[15:1];
 	#1000
