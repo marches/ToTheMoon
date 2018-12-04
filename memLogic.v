@@ -10,7 +10,7 @@ module memLogic (
 
 always @(*) begin
 
-	if (memAddress[11:10] == 2'b0) begin
+	if (memAddress[11:10] == 2'b00) begin
 		if(memAddress[9:8] == 2'b11) begin
 			finalAddress <= {5'b0, eBank, memAddress[7:0]};
 		end // if(memAddress[10:9] === 2'b11)
@@ -25,9 +25,12 @@ always @(*) begin
 			if (superBank == 1'b1) begin
 				finalAddress <= {3'b100, fBank[2:0], memAddress[9:0]};
 			end
+			else begin
+				finalAddress <= {1'b0, fBank, memAddress[9:0]};
+			end
 		end // if (fBank[4:3] == 2'b11)
 		else begin
-			finalAddress <= {1'b0, fBank, memAddress[9:0]} + 15'o10000;
+			finalAddress <= {1'b0, fBank, memAddress[9:0]};
 		end // else
 	end // else if (memAddress[12:11] === 2'b01)
 

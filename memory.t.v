@@ -1,7 +1,7 @@
 `include "memory.v"
 `timescale 1 ns / 1 ps
 
-module testmemReg ();
+module testMemory();
 	reg clk;
 	reg[15:0] memAddress;
 	reg[15:0] dataIn;
