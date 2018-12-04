@@ -1,0 +1,101 @@
+$date
+	Fri Nov 30 20:37:07 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module behavioral_alu_tester $end
+$var wire 15 ! Res [14:0] $end
+$var reg 16 " A [15:0] $end
+$var reg 16 # B [15:0] $end
+$var reg 3 $ Op [2:0] $end
+$var reg 1 % dut_passed $end
+$var reg 15 & testRes [14:0] $end
+$scope module dut $end
+$var wire 16 ' A [15:0] $end
+$var wire 16 ( B [15:0] $end
+$var wire 3 ) command [2:0] $end
+$var wire 15 * resultAND [14:0] $end
+$var reg 15 + C [14:0] $end
+$var reg 15 , D [14:0] $end
+$var reg 30 - product [29:0] $end
+$var reg 15 . result [14:0] $end
+$scope begin genblock[0] $end
+$upscope $end
+$scope begin genblock[1] $end
+$upscope $end
+$scope begin genblock[2] $end
+$upscope $end
+$scope begin genblock[3] $end
+$upscope $end
+$scope begin genblock[4] $end
+$upscope $end
+$scope begin genblock[5] $end
+$upscope $end
+$scope begin genblock[6] $end
+$upscope $end
+$scope begin genblock[7] $end
+$upscope $end
+$scope begin genblock[8] $end
+$upscope $end
+$scope begin genblock[9] $end
+$upscope $end
+$scope begin genblock[10] $end
+$upscope $end
+$scope begin genblock[11] $end
+$upscope $end
+$scope begin genblock[12] $end
+$upscope $end
+$scope begin genblock[13] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx .
+bx -
+b0 ,
+b0 +
+bz00000000000000 *
+bx )
+b0 (
+b0 '
+bx &
+1%
+bx $
+b0 #
+b0 "
+bx !
+$end
+#100
+bz11010001000111 *
+b0 !
+b0 .
+b0 -
+b11010001000111 ,
+b11111111111111 +
+b111010001000110 &
+b0 $
+b0 )
+b110100010001110 #
+b110100010001110 (
+b111111111111111 "
+b111111111111111 '
+#1100
+bz00000000000000 *
+b111010001000110 !
+b111010001000110 .
+b1101000100011000101110111001 -
+b0 ,
+b10011001 +
+b111111111111111 &
+b1111111011001100 #
+b1111111011001100 (
+b100110011 "
+b100110011 '
+0%
+#2100
