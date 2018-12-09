@@ -45,6 +45,8 @@ always @(posedge clk) begin
    	memory[5] <= regQ;
    	memory[6] <= regG;
    	memory[8] <= regLP;
+   	memory[9] <= 0;
+   	memory[10] <= 1;
 
 end 
 
