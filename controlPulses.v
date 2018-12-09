@@ -23,7 +23,7 @@ module controlPulses (
 
 	// state variables
 	reg [4:0] state;
-	reg count; 
+	reg [4:0] count; 
 
 	// state constants
 	parameter Load = 5'd12;// For executing: Mem(PC) into B
@@ -53,6 +53,7 @@ module controlPulses (
 		b_wr <= 0; 
 		a_wr <= 0; 
 		y_wr <= 0;
+		x_wr <= 0;
 		z_wr <= 0;
 
 		case(state)
