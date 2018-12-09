@@ -12,22 +12,27 @@ module memory (
 
 	input[15:0] regZ, regX, regY, regA, regB, regQ, regG, regLP,
 
-	output[15:0] result	
+	output[15:0] result,
+	output[15:0] finalAddress
+	// output didWrite
 );
 
 reg[15:0] memory[65535:0];
 
-wire[15:0] finalAddress;
+wire[15:0] finalAddress1;
 
 memLogic memLogic(
+	.clk(clk),
 	.eBank(eBank),
 	.fBank(fBank),
 	.superBank(superBank),
 	.memAddress(memAddress),
-	.finalAddress(finalAddress)
+	.finalAddress(finalAddress1)
 );
 
- always @(posedge clk) begin
+assign finalAddress = finalAddress1;
+
+always @(posedge clk) begin
         if(writeEnable) begin
             memory[finalAddress] <= dataIn;
    	 	end
@@ -40,7 +45,7 @@ memLogic memLogic(
    	memory[5] <= regQ;
    	memory[6] <= regG;
    	memory[8] <= regLP;
-   	
+
 end 
 
 assign result = memory[finalAddress];

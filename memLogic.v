@@ -1,6 +1,7 @@
 `timescale 1 ns / 1 ps
 
 module memLogic (
+	input clk,
 	input[2:0] eBank,
 	input[4:0] fBank,
 	input superBank,
