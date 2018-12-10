@@ -13,7 +13,7 @@ reg[14:0] C,D,result;
 
 
 //Setting result
-always @(posedge clk) begin
+always @(*) begin
  //convert to 2s compliment
  
   if (A[15] == 1 && command != 5 && command != 6) begin  C = -(~A[15:1]);  end
@@ -37,7 +37,7 @@ for (i = 0; i < 15; i = i + 1)
   end
 endgenerate
 
-always @(posedge clk)begin
+always @(*)begin
   case(command)
   0: begin result = C+D; end   //ADD
   1: begin result = C-D; end   //SUB
