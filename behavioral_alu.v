@@ -16,16 +16,16 @@ reg[14:0] C,D,result;
 always @(*) begin
  //convert to 2s compliment
  
-  if (A[15] == 1 && command != 5 && command != 6) begin  C = -(~A[15:1]);  end
+  if (A[15] == 1 && command != 5 && command != 6) begin  C <= -(~A[15:1]);  end
   else if (A[15] == 1 && (command == 5 || command == 6)) begin C = ~A[15:1]; end
   else C = A[15:1];
 
-  if (B[15] == 1 && command != 5 && command != 6) begin  D = -(~B[15:1]); end
-  else if (B[15] == 1 && (command == 5 || command == 6)) begin D = ~B[15:1]; end
-  else D = B[15:1];
+  if (B[15] == 1 && command != 5 && command != 6) begin  D <= -(~B[15:1]); end
+  else if (B[15] == 1 && (command == 5 || command == 6)) begin D <= ~B[15:1]; end
+  else D <= B[15:1];
 
   //Multiply
-  product = C*D;
+  product <= C*D;
 end
 //32 BIT AND
 genvar i;
@@ -37,7 +37,7 @@ for (i = 0; i < 15; i = i + 1)
   end
 endgenerate
 
-always @(*)begin
+always @(C, D)begin
   case(command)
   0: begin result = C+D; end   //ADD
   1: begin result = C-D; end   //SUB

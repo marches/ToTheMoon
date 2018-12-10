@@ -57,7 +57,7 @@ module agc
   assign inQ  = (Q_WE)  ? ((Q_MUX == 2'd0) ? memOut : ((Q_MUX == 1) ? U : regZ)) : regQ;
   assign inB  = (B_WE)  ? ((B_MUX == 2'd0) ? memOut : U) : regB;
   assign inA  = (A_WE)  ? ((A_MUX == 2'd0) ? memOut : ((A_MUX == 1) ? U : ((A_MUX == 2) ? (~regA) : regG))) : regA;
-  assign inY  = (Y_WE)  ? ((Y_MUX == 2'd0) ? memOut : ( (Y_MUX == 1) ? regA : ((Y_MUX == 2) ? 16'd1: ( (Y_MUX == 3) ? aAdd : pcAdd) ) ) ) : regY;
+  assign inY  = (Y_WE)  ? ((Y_MUX == 2'd0) ? memOut : ( (Y_MUX == 1) ? regA : ((Y_MUX == 2) ? 16'b010: ( (Y_MUX == 3) ? aAdd : pcAdd) ) ) ) : regY;
   assign inX  = (X_WE)  ? ((X_MUX == 2'd0) ? memOut : ((X_MUX == 1) ? regZ : ((X_MUX == 2) ? S : aNotA))) : regX;
   assign inZ  = (Z_WE)  ? ((Z_MUX == 2'd0) ? memOut : ((Z_MUX == 1) ? U : regB)) : regZ;
 
