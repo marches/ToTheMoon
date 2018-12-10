@@ -72,6 +72,7 @@ module controlPulses (
 			preLoad : begin 
 				if (count == 0) begin
 					maddr_mux<=0; b_mux<=0; b_wr<=1;
+					count <= 1;
 				end
 
 				else if (count == 1) begin
