@@ -37,7 +37,7 @@ for (i = 0; i < 15; i = i + 1)
   end
 endgenerate
 
-always @(posedge clk)begin
+always @(*)begin
   case(command)
   0: begin result = C+D; end   //ADD
   1: begin result = C-D; end   //SUB
