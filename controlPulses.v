@@ -71,83 +71,71 @@ module controlPulses (
 
 			preLoad : begin 
 				state <= Load;
+				maddr_mux<=0; b_mux<=0; b_wr<=1;
 			end
 
 			Load : begin
 				if (opcode == 3'd0 && extracode == 0) begin
 					state <= Tc;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd1 && extracode == 0) begin
 					state <= Ccs;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd5 && qc == 2'd0 && extracode == 0) begin
 					state <= Index;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd5 && qc == 2'd3 && extracode == 0) begin
 					state <= Xch;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd4 && extracode == 0) begin
 					state <= Cs;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd5 && qc == 2'd2 && extracode == 0) begin
 					state <= Ts;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd6 && extracode == 0) begin
 					state <= Ad;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd7 && extracode == 0) begin
 					state <= Mask;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd6 && extracode == 1) begin
 					state <= Su;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd7 && extracode == 1) begin
 					state <= Mp;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd1 && extracode == 1) begin
 					state <= Dv;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else if (opcode == 3'd5 && qc == 1) begin
 					state <= Extend;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
 				else begin
-					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
