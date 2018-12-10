@@ -71,6 +71,6 @@ module agc
     regA <= inA ;
     regY <= inY ;
     regX <= inX ;
-    regZ = inZ ;
+    regZ <= inZ ;
   end
 endmodule
