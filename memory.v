@@ -53,8 +53,8 @@ always @(posedge clk) begin
    	memory[13] <= 16'b0100000000010100;
    	memory[14] <= 16'b1011000011001001;
    	memory[15] <= 16'b1110000000010100;
-   	memory[16] <= 16'b1011100011001000;
-end 
+    memory[16] <= 16'b1011100011001000;
+end
 
 assign result = memory[finalAddress];
 

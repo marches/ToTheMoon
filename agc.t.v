@@ -3,7 +3,7 @@
 module agcTest ();
 	reg clk;
 
-	agc dut(clk); 
+	agc dut(clk);
 
 	//Set up clock
 	initial clk = 0;
@@ -12,9 +12,8 @@ module agcTest ();
 
 	initial begin
 
-	#100
 
-	// $readmemh("AGCAddMaskTsXch.text", dut.mem.memory, 4'd11);
+	$readmemb("AndMaskTsXch.mem", dut.mem.memory, 4'd11);
 
 	$dumpfile("cpufirsttest.vcd");
 	$dumpvars();

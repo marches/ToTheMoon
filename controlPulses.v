@@ -23,7 +23,7 @@ module controlPulses (
 
 	// state variables
 	reg [4:0] state;
-	reg [4:0] count; 
+	reg [4:0] count;
 
 	// state constants
 	parameter Load = 5'd12;// For executing: Mem(PC) into B
@@ -42,16 +42,17 @@ module controlPulses (
 
 	initial state = Load;
 	initial count = 0;
+	initial z_wr = 0;
 
 	// mapping state to output wr/mux flags
 	always @ (posedge clk) begin
 
 		mem_wr <= 0;
 		lp_wr <= 0;
-		g_wr <= 0; 
-		q_wr <= 0; 
-		b_wr <= 0; 
-		a_wr <= 0; 
+		g_wr <= 0;
+		q_wr <= 0;
+		b_wr <= 0;
+		a_wr <= 0;
 		y_wr <= 0;
 		x_wr <= 0;
 		z_wr <= 0;
@@ -60,7 +61,7 @@ module controlPulses (
 			Load : begin
 				if (opcode == 3'd0 && extracode == 0) begin
 					state <= Tc;
-					maddr_mux<=0; b_mux<=0; b_wr<=1;					
+					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
 
@@ -126,6 +127,11 @@ module controlPulses (
 
 				else if (opcode == 3'd5 && qc == 1) begin
 					state <= Extend;
+					maddr_mux<=0; b_mux<=0; b_wr<=1;
+					count <= 0;
+				end
+
+				else begin
 					maddr_mux<=0; b_mux<=0; b_wr<=1;
 					count <= 0;
 				end
@@ -210,64 +216,64 @@ module controlPulses (
 			Index : begin
 				if (count == 0) begin
 					maddr_mux<=1; a_mux<=2'd0; a_wr<=1;
-					count <= 1; 
+					count <= 1;
 				end
 
 				else if (count == 1) begin
 					x_mux<=2'd2; x_wr<=1;
-					count <= 2; 
+					count <= 2;
 				end
 
 				else if (count == 2) begin
-					y_mux<=3'd2; y_wr<=1; 
-					count <= 3; 
+					y_mux<=3'd2; y_wr<=1;
+					count <= 3;
 				end
 
 				else if (count == 3) begin
 					b_mux<=1; b_wr<=1; alu_op<=`AD;
-					count <= 4; 
+					count <= 4;
 				end
 
 				else if (count == 4) begin
 					x_mux<=2'd0; x_wr<=1;
-					count <= 5; 
+					count <= 5;
 				end
 
 				else if (count == 5) begin
 					y_mux<=3'd1; y_wr<=1;
-					count <= 6; 
+					count <= 6;
 				end
 
 				else if (count == 6) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`AD;
-					count <= 7; 
+					count <= 7;
 				end
 
 				else if (count == 7) begin
 					mdata_mux<=0; mem_wr<=1;
-					count <= 8; 
+					count <= 8;
 				end
 
 				else if (count == 8) begin
 					ext_flag<=0;
-					count <= 9; 
+					count <= 9;
 				end
 
 				else if (count == 9) begin
 					x_mux<=2'd1; x_wr<=1;
-					count <= 10; 
+					count <= 10;
 				end
 
 				else if (count == 10) begin
-					y_mux<=3'd2; y_wr<=1; 
-					count <= 11; 
+					y_mux<=3'd2; y_wr<=1;
+					count <= 11;
 				end
 
 				else if (count == 11) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= Load;
 				end
-				
+
 			end
 
 			Xch : begin
@@ -275,7 +281,7 @@ module controlPulses (
 					maddr_mux<=1; g_mux<=0; g_wr<=1;
 					count <= 1;
 				end
-				
+
 				else if (count == 1) begin
 					mdata_mux<=0; mem_wr<=1;
 					count <= 2;
@@ -313,7 +319,7 @@ module controlPulses (
 					maddr_mux<=1; g_mux<=0; g_wr<=1; a_mux<=2'd0; a_wr<=1;
 					count <= 1;
 				end
-				
+
 				else if (count == 1) begin
 					a_mux<=2'd2; a_wr<=1;
 					count <= 2;
@@ -325,12 +331,12 @@ module controlPulses (
 				end
 
 				else if (count == 3) begin
-					x_mux<=2'd1; x_wr<=1; 
+					x_mux<=2'd1; x_wr<=1;
 					count <= 4;
 				end
 
 				else if (count == 4) begin
-					y_mux<=3'd2; y_wr<=1; 
+					y_mux<=3'd2; y_wr<=1;
 					count <= 4;
 				end
 
@@ -338,28 +344,28 @@ module controlPulses (
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= Load;
 				end
-			
+
 			end
 
 			Ts : begin
 				if (count == 0) begin
 					mdata_mux<=0; mem_wr<=1;
-					count <= 1; 
+					count <= 1;
 				end
 
 				else if (count == 1) begin
 					ext_flag<=0;
-					count <= 2; 
+					count <= 2;
 				end
 
 				else if (count == 2) begin
 					x_mux<=2'd1; x_wr<=1;
-					count <= 3; 
+					count <= 3;
 				end
 
 				else if (count == 3) begin
 					y_mux<=3'd2; y_mux<=1;
-					count <= 4; 
+					count <= 4;
 				end
 
 				else if (count == 4) begin
@@ -487,37 +493,37 @@ module controlPulses (
 
 				if (count == 0) begin
 					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
-					count <= 1; 
+					count <= 1;
 				end
 
 				else if (count == 1) begin
 					y_mux<=3'd1; y_wr<=1;
-					count <= 2; 
+					count <= 2;
 				end
 
 				else if (count == 2) begin
 					lp_mux<=1; lp_wr<=1; alu_op<=`MP0;
-					count <= 3; 
+					count <= 3;
 				end
 
 				else if (count == 3) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`MP1;
-					count <= 4; 
+					count <= 4;
 				end
 
 				else if (count == 4) begin
 					ext_flag<=0;
-					count <= 5; 
+					count <= 5;
 				end
 
 				else if (count == 5) begin
 					x_mux<=2'd1; x_wr<=1;
-					count <= 6; 
+					count <= 6;
 				end
 
 				else if (count == 6) begin
 					y_mux<=3'd2; y_wr<=1;
-					count <= 7; 
+					count <= 7;
 				end
 
 				else if (count == 7) begin
@@ -531,37 +537,37 @@ module controlPulses (
 
 				if (count == 0) begin
 					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
-					count <= 1; 
+					count <= 1;
 				end
 
 				else if (count == 1) begin
 					y_mux<=3'd1; y_wr<=1;
-					count <= 2; 
+					count <= 2;
 				end
 
 				else if (count == 2) begin
 					lp_mux<=1; lp_wr<=1; alu_op<=`DV0;
-					count <= 3; 
+					count <= 3;
 				end
 
 				else if (count == 3) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`DV1;
-					count <= 4; 
+					count <= 4;
 				end
 
 				else if (count == 4) begin
 					ext_flag<=0;
-					count <= 5; 
+					count <= 5;
 				end
 
 				else if (count == 5) begin
 					x_mux<=2'd1; x_wr<=1;
-					count <= 6; 
+					count <= 6;
 				end
 
 				else if (count == 6) begin
 					y_mux<=3'd2; y_wr<=1;
-					count <= 7; 
+					count <= 7;
 				end
 
 				else if (count == 7) begin
@@ -572,7 +578,7 @@ module controlPulses (
 			end
 
 			Extend : begin
-				ext_flag <= 1; 
+				ext_flag <= 1;
 				state <= Load;
 			end
 
