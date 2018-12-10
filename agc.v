@@ -24,8 +24,8 @@ module agc
   reg[15:0] regY,regX,regLP,regG,regQ, regB,regA,regZ;
   reg extraflag;
   initial extraflag = 0;
-  initial regZ = 16'b10110;
-  initial regB = 16'b0100000000010100;
+  initial regZ[15:1] = 15'd11;
+  initial regZ[0] = 0;
 
   //Control Pulse Driven FSM
   controlPulses control(.clk(clk),.opcode(regB[15:13]),.qc(regB[12:11]),.extracode(extraflag),.ext_flag(new_extraflag),.mem_wr(mem_WE),.lp_wr(LP_WE), .g_wr(G_WE), .q_wr(Q_WE), .b_wr(B_WE), .a_wr(A_WE), .y_wr(Y_WE), .x_wr(X_WE), .z_wr(Z_WE), .maddr_mux(MAddr_MUX), .mdata_mux(data_in_MUX), .lp_mux(LP_MUX), .g_mux(G_MUX), .b_mux(B_MUX), .q_mux(Q_MUX), .a_mux(A_MUX), .x_mux(X_MUX), .z_mux(Z_MUX), .y_mux(Y_MUX), .alu_op(alu_op));
@@ -58,18 +58,18 @@ module agc
   assign inA  = (A_WE)  ? ((A_MUX == 2'd0) ? memOut : ((A_MUX == 1) ? U : ((A_MUX == 2) ? (~regA) : regG))) : inA;
   assign inY  = (Y_WE)  ? ((Y_MUX == 2'd0) ? memOut : ( (Y_MUX == 1) ? regA : ((Y_MUX == 2) ? 16'd1: ( (Y_MUX == 3) ? aAdd : pcAdd) ) ) ) : inY;
   assign inX  = (X_WE)  ? ((X_MUX == 2'd0) ? memOut : ((X_MUX == 1) ? regZ : ((X_MUX == 2) ? S : aNotA))) : inX;
-  assign inZ  = (Z_WE)  ? ((Z_MUX == 2'd0) ? memOut : ((Z_MUX == 1) ? U : regB)) : inZ;
+  assign inZ  = (Z_WE)  ? ((Z_MUX == 2'd0) ? memOut : ((Z_MUX == 1) ? U : regB)) : regZ;
 
   //Write reg only on posedges
   always @(posedge clk) begin
-    extraflag = new_extraflag;
-    regLP = inLP;
-    regG = inG ;
-    regQ = inQ ;
-    regB = inB ;
-    regA = inA ;
-    regY = inY ;
-    regX = inX ;
+    extraflag <= new_extraflag;
+    regLP <= inLP;
+    regG <= inG ;
+    regQ <= inQ ;
+    regB <= inB ;
+    regA <= inA ;
+    regY <= inY ;
+    regX <= inX ;
     regZ = inZ ;
   end
 endmodule
