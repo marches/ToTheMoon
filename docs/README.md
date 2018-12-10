@@ -42,6 +42,20 @@ And to see how all of the components interact visit:
 
 The most difficult part of this project was just the fact that the Apollo Guidance Computer is so different from everything else that we worked on during Computer Architecture. 
 
+The Apollo Guidance Computer was very space limited, and many of of the architecture decisions that were made were due to space limitations. Many if not all of the decisions that were made were very difficult for us to understand because we spent the entire semester learning about systems that are not space limited. 
+
+For example, the opcode of the Apollo Guidance Computer is only 3 bits which means that you van have a maximum of eight instructions. However, the Apollo Guidance computer needed more than eight instructions, so sometimes the first five bits are used for the opcode instead of the first three. We had to take into consideration in our code that the opcode had a variable length. 
+
+There was a similar issue with the memory. The memory address in the Apollo Guidance Computer was only 12 bits long, but it needed to be 16 bits long in order to address all of the possible memory locations. To overcome this obstacle, the Apollo Guidance Computer used a combination of 3 different memory address banks to form a 16 bit memory address. 
+
+The Apollo Guidance Computer also only had 8 flip-flop memory registers, and so during each instruction, data had to be frequently moved between the registers and the erasable memory so that data was never lost and the right data was always in the correct place.
+
+At the end of this project, we struggled a lot with running our test bench in Verilog. In previous labs, we were successfully able to initialize the memory with the instruction set, but for some reason we really struggled to do that in this project. 
+
+### Extensions of the Project
+
+If we had more time, we would have implemented some of the instructions in Block 2 to allow us to actually run the code that was run on the Apollo Guidance Computer during the mission to the moon. Currently, our instruction set is too limited to run any of the actual commands that were preformed during that mission. 
+
 
 
 ### Markdown
