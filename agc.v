@@ -14,13 +14,13 @@ module agc
   reg[15:0] regY,regX,regLP,regG,regQ, regB,regA,regZ;
 
   ALU alu(.res(preU),.A(regX),.B(regY),.command(alu_op),.clk(clk));
-  U[15:1] = preU;
-  U[0] = 0; //temp should be set by parity bit
-  AorNegA = regA; //or negative A based on whether pos or neg module (ccs)
-  imm = 16'd1; //or 2 or 3 or 4 or 0 baseed on module (ccs)
-  S = regB[1:12];
+  assign U[15:1] = preU;
+  assign U[0] = 0; //temp should be set by parity bit
+  assign AorNegA = regA; //or negative A based on whether pos or neg module (ccs)
+  assign imm = 16'd1; //or 2 or 3 or 4 or 0 baseed on module (ccs)
+  assign S = regB[1:12];
   memory mem(.clk(clk),.memAddress(mAddr),.dataIn(regA[12:1]),.writeEnable(mem_WE),.result(memOut));
-  assign mAddr <= (MAddr_MUX == 0) ? PC_addr : ((MAddr_MUX == 1) ? S : regA);
+  assign mAddr = (MAddr_MUX == 0) ? PC_addr : ((MAddr_MUX == 1) ? S : regA);
 
   wire[15:0] inLP, inG, inQ, inB, inA, inY, inX, inZ;
   assign inLP = (LP_WE) ? ((LP_MUX == 0) ? memOut : U);
