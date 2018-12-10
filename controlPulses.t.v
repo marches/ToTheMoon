@@ -62,6 +62,9 @@ module testcontrolpulses();
 		clk = 0; #10
 		clk = 1; #10
 
+		$display("Testing extend");
+		opcode = 3'd5; qc = 1;
+
 		clk = 0; #10
 		clk = 1; #10
 
@@ -69,9 +72,6 @@ module testcontrolpulses();
 			failed = 1; 
 			$display("Not in load");
 		end
-
-		$display("Testing extend");
-		opcode = 3'd5; qc = 1;
 
 		clk = 0; #10
 		clk = 1; #10

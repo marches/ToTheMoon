@@ -130,6 +130,11 @@ module controlPulses (
 					count <= 0;
 				end
 
+				else begin 
+					maddr_mux<=0; b_mux<=0; b_wr<=1;
+					count <= 0;				
+				end
+
 			end
 
 			Tc : begin
