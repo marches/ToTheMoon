@@ -18,28 +18,29 @@ module agc
   assign U[0] = 0; //temp should be set by parity bit
   assign AorNegA = regA; //or negative A based on whether pos or neg module (ccs)
   assign imm = 16'd1; //or 2 or 3 or 4 or 0 baseed on module (ccs)
-  assign S = regB[1:12];
+  assign S = regB[12:1];
+  assign PC_addr = regZ[12:1];
   memory mem(.clk(clk),.memAddress(mAddr),.dataIn(regA[12:1]),.writeEnable(mem_WE),.result(memOut));
   assign mAddr = (MAddr_MUX == 0) ? PC_addr : ((MAddr_MUX == 1) ? S : regA);
 
   wire[15:0] inLP, inG, inQ, inB, inA, inY, inX, inZ;
-  assign inLP = (LP_WE) ? ((LP_MUX == 0) ? memOut : U);
-  assign inG  = (G_WE)  ? memOut;
-  assign inQ  = (Q_WE)  ? ((Q_MUX == 0) ? memOut : ((Q_MUX == 1) ? U : regZ));
-  assign inB  = (G_WE)  ? ((B_MUX == 0) ? memOut : U);
-  assign inA  = (A_WE)  ? ((A_MUX == 0) ? memOut : ((A_MUX == 1) ? U : ((A_MUX == 2) ? (~A) : regG)));
-  assign inY  = (Y_WE)  ? ((Y_MUX == 0) ? memOut : ((Y_MUX == 1) ? regA : ((Y_MUX == 2) ? 16'd1: imm )));
-  assign inX  = (X_WE)  ? ((X_MUX == 0) ? memOut : ((X_MUX == 1) ? regZ : ((X_MUX == 2) ? S : AorNegA)));
-  assign inZ  = (Z_WE)  ? ((Z_MUX == 0) ? memOut : ((Z_MUX == 1) ? U : regB));
-  always (@posedge clk) begin
-    regLP <= inLP;
-    regG <= inG ;
-    regQ <= inQ ;
-    regB <= inB ;
-    regA <= inA ;
-    regY <= inY ;
-    regX <= inX ;
-    regZ <= inZ ;
+  assign inLP = (LP_WE) ? ((LP_MUX == 0) ? memOut : U) : inLP;
+  assign inG  = (G_WE)  ? memOut : inG;
+  assign inQ  = (Q_WE)  ? ((Q_MUX == 2'd0) ? memOut : ((Q_MUX == 1) ? U : regZ)) : inQ;
+  assign inB  = (G_WE)  ? ((B_MUX == 2'd0) ? memOut : U) : inB;
+  assign inA  = (A_WE)  ? ((A_MUX == 2'd0) ? memOut : ((A_MUX == 1) ? U : ((A_MUX == 2) ? (~regA) : regG))) : inA;
+  assign inY  = (Y_WE)  ? ((Y_MUX == 2'd0) ? memOut : ((Y_MUX == 1) ? regA : ((Y_MUX == 2) ? 16'd1: imm ))) : inY;
+  assign inX  = (X_WE)  ? ((X_MUX == 2'd0) ? memOut : ((X_MUX == 1) ? regZ : ((X_MUX == 2) ? S : AorNegA))) : inX;
+  assign inZ  = (Z_WE)  ? ((Z_MUX == 2'd0) ? memOut : ((Z_MUX == 1) ? U : regB)) : inZ;
+  always @(posedge clk) begin
+    regLP = inLP;
+    regG = inG ;
+    regQ = inQ ;
+    regB = inB ;
+    regA = inA ;
+    regY = inY ;
+    regX = inX ;
+    regZ = inZ ;
   end
 endmodule
 
