@@ -1,7 +1,5 @@
 `include "agc.v"
 
-
-
 module agcTest ();
 	reg clk;
 
@@ -14,7 +12,7 @@ module agcTest ();
 
 	initial begin
 
-	$readmemb("AGCAddMaskTsXch", dut.mem.memory, 0, 4'd11);
+	$readmemh("AGCAddMaskTsXch.hex", dut.mem.memory, 4'd11);
 
 	$dumpfile("cpufirsttest.vcd");
 	$dumpvars();
