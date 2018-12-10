@@ -43,6 +43,15 @@ module controlPulses (
 	initial state = Load;
 	initial count = 0;
 	initial z_wr = 0;
+	initial ext_flag = 0;
+	initial a_wr = 0;
+	initial b_wr = 0;
+	initial x_wr = 0;
+	initial y_wr = 0;
+	initial q_wr = 0;
+	initial lp_wr = 0;
+	initial g_wr = 0; 
+	initial mem_wr = 0; 
 
 	// mapping state to output wr/mux flags
 	always @ (posedge clk) begin
