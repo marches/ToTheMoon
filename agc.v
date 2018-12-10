@@ -8,9 +8,12 @@ module agc
   input[1:0] MAddr_MUX, Q_MUX,A_MUX,X_MUX,Z_MUX, Y_MUX,
   input LP_MUX, B_MUX, LP_WE, G_WE, Q_WE, B_WE, A_WE, Y_WE, X_WE, Z_WE,mem_WE
   );
+  parameter[2:0] eBank = 000;
+  parameter[4:0] fBank = 00000;
+  parameter superBank = 1'd0;
   wire[14:0] preU;
   wire[15:0] memOut,AorNegA,imm, U;
-  wire[11:0] mAddr,S;
+  wire[11:0] mAddr,S, PC_addr;
   reg[15:0] regY,regX,regLP,regG,regQ, regB,regA,regZ;
 
   ALU alu(.res(preU),.A(regX),.B(regY),.command(alu_op),.clk(clk));
@@ -20,7 +23,9 @@ module agc
   assign imm = 16'd1; //or 2 or 3 or 4 or 0 baseed on module (ccs)
   assign S = regB[12:1];
   assign PC_addr = regZ[12:1];
-  memory mem(.clk(clk),.memAddress(mAddr),.dataIn(regA[12:1]),.writeEnable(mem_WE),.result(memOut));
+  memory mem(.clk(clk),.eBank(eBank),.fBank(fBank),.superBank(superBank),.memAddress(mAddr),.dataIn(regA),.writeEnable(mem_WE),.regZ(regZ),.regX(regX),.regY(regY),.regA(regA),.regB(regB),.regQ(regQ),.regG(regG),.regLP(regLP),.result(memOut));
+
+
   assign mAddr = (MAddr_MUX == 0) ? PC_addr : ((MAddr_MUX == 1) ? S : regA);
 
   wire[15:0] inLP, inG, inQ, inB, inA, inY, inX, inZ;
