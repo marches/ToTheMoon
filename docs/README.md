@@ -1,9 +1,7 @@
-﻿#The Apollo Guidance Computer
+﻿# The Apollo Guidance Computer
 By Annie Kroo, Paige Pfenninger, March Saper
 
-## In
-
-For our final Computer Architecture project, we set out with the goal to understand Block 1 of the Apollo Guidance Computer and create a simulation that can run all of the commands in Block 1. 
+For our final Computer Architecture project, we set out with the goal to understand Block 1 of the Apollo Guidance Computer (AGC) and create a simulation that can run all of the commands in Block 1. 
 
 We chose this project because we wanted to understand how early computers work and attempt to recreate one of the first computers with modern software. 
 
@@ -25,10 +23,26 @@ The user interfaced with Block 1 through a series of indicator lights, numeric d
 
 The Block 1 computer was used for the first unmanned missions into space. The Apollo Guidance Computer was updated with Block 2 hardware and instructions for the missions to the moon. 
 
+## What We Accomplished
 
-You can use the [editor on GitHub](https://github.com/marches/ToTheMoon/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This project was completed over the course of 2.5 weeks. The majority of our time was spent learning about the Apollo Guidance Computer. The Apollo Guidance Computer is nothing like any of the architectures that we studied in Computer Architecture. Many of the standards that we take fore granted like 2s complement and having sufficient length op-codes were not part of the Apollo Guidance Computer. Although we were able to find many resources on the Apollo Guidance Computer, most of them were PDF scans of very old documents that could not be easily searched.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+After completing a lot of research, we set out to create a simulation of Block 1 of the Apollo Guidance Computer. We created a simulation in verilog of the major components of Block 1. For many of the components and instructions it was difficult to find out exactly how they worked so we made our best guesses. 
+
+Here are links to the breakdown of each major component:
+
+- Memory
+- ALU
+- Instructions and FSM
+
+And to see how all of the components interact visit:
+- Putting it all together 
+
+## What We Struggled With
+
+The most difficult part of this project was just the fact that the Apollo Guidance Computer is so different from everything else that we worked on during Computer Architecture. 
+
+
 
 ### Markdown
 
