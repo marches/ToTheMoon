@@ -15,7 +15,7 @@ reg[14:0] C,D,result;
 //Setting result
 always @(posedge clk) begin
  //convert to 2s compliment
- $display("A = %b",C);
+ 
   if (A[15] == 1 && command != 5 && command != 6) begin  C = -(~A[15:1]);  end
   else if (A[15] == 1 && (command == 5 || command == 6)) begin C = ~A[15:1]; end
   else C = A[15:1];
