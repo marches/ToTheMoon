@@ -177,6 +177,7 @@ module controlPulses (
 				else if (count == 5) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -220,6 +221,7 @@ module controlPulses (
 				else if (count == 7) begin
 					ext_flag<=0;
 					state <= preLoad;
+					count <=0;
 				end
 			end
 
@@ -282,6 +284,7 @@ module controlPulses (
 				else if (count == 11) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -320,6 +323,7 @@ module controlPulses (
 				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -353,6 +357,7 @@ module controlPulses (
 				else if (count == 5) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -381,6 +386,7 @@ module controlPulses (
 				else if (count == 4) begin
 					z_mux<=2'd1; z_wr<=1;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -419,6 +425,7 @@ module controlPulses (
 				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -457,6 +464,7 @@ module controlPulses (
 				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -495,6 +503,7 @@ module controlPulses (
 				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -539,6 +548,7 @@ module controlPulses (
 				else if (count == 7) begin
 					z_mux<=2'd1; z_mux<=1; alu_op<=`AD;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -583,6 +593,7 @@ module controlPulses (
 				else if (count == 7) begin
 					z_mux<=2'd1; z_mux<=1; alu_op<=`AD;
 					state <= preLoad;
+					count <=0;
 				end
 
 			end
@@ -590,6 +601,7 @@ module controlPulses (
 			Extend : begin
 				ext_flag <= 1;
 				state <= preLoad;
+				count <=0;
 			end
 
 		endcase
