@@ -14,7 +14,7 @@ module agcTest ();
 
 	initial begin
 
-	$loadmemb("AGCAddMaskTsXch", dut.mem.memory, 0, 4'd11);
+	$readmemb("AGCAddMaskTsXch", dut.mem.memory, 0, 4'd11);
 
 	$dumpfile("cpufirsttest.vcd");
 	$dumpvars();
