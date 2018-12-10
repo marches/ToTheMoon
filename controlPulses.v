@@ -70,8 +70,15 @@ module controlPulses (
 		case(state)
 
 			preLoad : begin 
-				state <= Load;
-				maddr_mux<=0; b_mux<=0; b_wr<=1;
+				if (count == 0) begin
+					maddr_mux<=0; b_mux<=0; b_wr<=1;
+				end
+
+				else if (count == 1) begin
+					state <= Load;
+					count <= 0;
+				end
+				
 			end
 
 			Load : begin
