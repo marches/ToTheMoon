@@ -40,6 +40,11 @@ module controlPulses (
 	parameter Dv = 5'd10;
 	parameter Extend = 5'd11;
 
+	// for the alu wait states
+	parameter AluWait = 5'd13;
+	reg [4:0] aluCount;
+	reg [4:0] aluReturnState;
+
 	initial state = Load;
 	initial count = 0;
 	initial z_wr = 0;
@@ -51,7 +56,9 @@ module controlPulses (
 	initial q_wr = 0;
 	initial lp_wr = 0;
 	initial g_wr = 0; 
-	initial mem_wr = 0; 
+	initial mem_wr = 0;
+
+	initial aluCount = 0; 
 
 	// mapping state to output wr/mux flags
 	always @ (posedge clk) begin
@@ -67,6 +74,19 @@ module controlPulses (
 		z_wr <= 0;
 
 		case(state)
+
+			AluWait : begin
+				if (aluCount == 0) begin
+					aluCount <= 1;
+				end
+
+				else if (aluCount == 1) begin
+					aluCount <= 0;
+					state <=aluReturnState;
+				end
+				
+			end
+
 			Load : begin
 				if (opcode == 3'd0 && extracode == 0) begin
 					state <= Tc;
@@ -175,7 +195,8 @@ module controlPulses (
 
 				else if (count == 5) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
@@ -198,6 +219,8 @@ module controlPulses (
 
 				else if (count == 3) begin
 					z_mux<=1; z_wr<=1; alu_op<=`AD;
+					state <= AluWait;
+					aluReturnState <= Ccs;
 					count <= 4;
 				end
 
@@ -218,7 +241,8 @@ module controlPulses (
 
 				else if (count == 7) begin
 					ext_flag<=0;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 			end
 
@@ -240,6 +264,8 @@ module controlPulses (
 
 				else if (count == 3) begin
 					b_mux<=1; b_wr<=1; alu_op<=`AD;
+					state <= AluWait;
+					aluReturnState <= Index;
 					count <= 4;
 				end
 
@@ -255,6 +281,8 @@ module controlPulses (
 
 				else if (count == 6) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`AD;
+					state <= AluWait;
+					aluReturnState <= Index;
 					count <= 7;
 				end
 
@@ -280,7 +308,8 @@ module controlPulses (
 
 				else if (count == 11) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
@@ -318,7 +347,8 @@ module controlPulses (
 
 				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
@@ -351,7 +381,8 @@ module controlPulses (
 
 				else if (count == 5) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
@@ -379,7 +410,8 @@ module controlPulses (
 
 				else if (count == 4) begin
 					z_mux<=2'd1; z_wr<=1;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
@@ -398,6 +430,8 @@ module controlPulses (
 				else if (count == 2) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`AD;
 					count <= 3;
+					state <= AluWait;
+					aluReturnState <= Ad;
 				end
 
 				else if (count == 3) begin
@@ -417,7 +451,8 @@ module controlPulses (
 
 				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
@@ -436,6 +471,8 @@ module controlPulses (
 				else if (count == 2) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`MASK;
 					count <= 3;
+					state <= AluWait;
+					aluReturnState <= Mask;
 				end
 
 				else if (count == 3) begin
@@ -455,7 +492,8 @@ module controlPulses (
 
 				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
@@ -473,6 +511,8 @@ module controlPulses (
 
 				else if (count == 2) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`SU;
+					state <= AluWait;
+					aluReturnState <= Su;
 					count <= 3;
 				end
 
@@ -493,7 +533,8 @@ module controlPulses (
 
 				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
@@ -512,11 +553,15 @@ module controlPulses (
 
 				else if (count == 2) begin
 					lp_mux<=1; lp_wr<=1; alu_op<=`MP0;
+					state <= AluWait;
+					aluReturnState <= Mp;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`MP1;
+					state <= AluWait;
+					aluReturnState <= Mp;
 					count <= 4;
 				end
 
@@ -537,7 +582,8 @@ module controlPulses (
 
 				else if (count == 7) begin
 					z_mux<=2'd1; z_mux<=1; alu_op<=`AD;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
@@ -556,11 +602,15 @@ module controlPulses (
 
 				else if (count == 2) begin
 					lp_mux<=1; lp_wr<=1; alu_op<=`DV0;
+					state <= AluWait;
+					aluReturnState <= Dv;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`DV1;
+					state <= AluWait;
+					aluReturnState <= Dv;
 					count <= 4;
 				end
 
@@ -581,7 +631,8 @@ module controlPulses (
 
 				else if (count == 7) begin
 					z_mux<=2'd1; z_mux<=1; alu_op<=`AD;
-					state <= Load;
+					state <= AluWait;
+					aluReturnState <= Load;
 				end
 
 			end
