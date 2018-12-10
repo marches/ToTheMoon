@@ -87,6 +87,10 @@ module testcontrolpulses();
 		clk = 0; #10
 		clk = 1; #10
 
+		if (failed == 1) begin
+			$display("tests failed");
+		end
+
 		$finish;
 
 	end
