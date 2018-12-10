@@ -148,32 +148,37 @@ module controlPulses (
 			end
 
 			Tc : begin
+				// wait for mem to output
 				if (count == 0) begin
-					q_mux<=2'd2; q_wr<=1;
-					count <= 1;
+					count <=1;
 				end
 
 				else if (count == 1) begin
-					z_mux<=2'd2; z_wr<=1;
+					q_mux<=2'd2; q_wr<=1;
 					count <= 2;
 				end
 
 				else if (count == 2) begin
-					ext_flag<=0;
+					z_mux<=2'd2; z_wr<=1;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
-					x_mux<=2'd1; x_wr<=1;
+					ext_flag<=0;
 					count <= 4;
 				end
 
 				else if (count == 4) begin
-					y_mux<=3'd2; y_wr<=1;
+					x_mux<=2'd1; x_wr<=1;
 					count <= 5;
 				end
 
 				else if (count == 5) begin
+					y_mux<=3'd2; y_wr<=1;
+					count <= 6;
+				end
+
+				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= Load;
 				end
@@ -181,104 +186,114 @@ module controlPulses (
 			end
 
 			Ccs : begin
+				// wait for mem to output
 				if (count == 0) begin
-					maddr_mux<=1; a_mux<=2'd0; a_wr<=1;
-					count <= 1;
+					count <=1;
 				end
 
 				else if (count == 1) begin
-					y_mux<=3'd3; y_wr<=1;
+					maddr_mux<=1; a_mux<=2'd0; a_wr<=1;
 					count <= 2;
 				end
 
 				else if (count == 2) begin
-					x_mux<=2'd2; x_wr<=1;
+					y_mux<=3'd3; y_wr<=1;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
-					z_mux<=1; z_wr<=1; alu_op<=`AD;
+					x_mux<=2'd2; x_wr<=1;
 					count <= 4;
 				end
 
 				else if (count == 4) begin
-					y_mux<=3'd4; y_wr<=1;
+					z_mux<=1; z_wr<=1; alu_op<=`AD;
 					count <= 5;
 				end
 
 				else if (count == 5) begin
-					x_mux<=2'd3; x_wr<=1;
+					y_mux<=3'd4; y_wr<=1;
 					count <= 6;
 				end
 
 				else if (count == 6) begin
-					a_mux<=2'd1; a_wr<=1; alu_op<=`AD;
+					x_mux<=2'd3; x_wr<=1;
 					count <= 7;
 				end
 
 				else if (count == 7) begin
+					a_mux<=2'd1; a_wr<=1; alu_op<=`AD;
+					count <= 8;
+				end
+
+				else if (count == 8) begin
 					ext_flag<=0;
 					state <= Load;
 				end
 			end
 
 			Index : begin
+				// wait for mem to output
 				if (count == 0) begin
-					maddr_mux<=1; a_mux<=2'd0; a_wr<=1;
-					count <= 1;
+					count <=1;
 				end
 
 				else if (count == 1) begin
-					x_mux<=2'd2; x_wr<=1;
+					maddr_mux<=1; a_mux<=2'd0; a_wr<=1;
 					count <= 2;
 				end
 
 				else if (count == 2) begin
-					y_mux<=3'd2; y_wr<=1;
+					x_mux<=2'd2; x_wr<=1;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
-					b_mux<=1; b_wr<=1; alu_op<=`AD;
+					y_mux<=3'd2; y_wr<=1;
 					count <= 4;
 				end
 
 				else if (count == 4) begin
-					x_mux<=2'd0; x_wr<=1;
+					b_mux<=1; b_wr<=1; alu_op<=`AD;
 					count <= 5;
 				end
 
 				else if (count == 5) begin
-					y_mux<=3'd1; y_wr<=1;
+					x_mux<=2'd0; x_wr<=1;
 					count <= 6;
 				end
 
 				else if (count == 6) begin
-					a_mux<=2'd1; a_wr<=1; alu_op<=`AD;
+					y_mux<=3'd1; y_wr<=1;
 					count <= 7;
 				end
 
 				else if (count == 7) begin
-					mdata_mux<=0; mem_wr<=1;
+					a_mux<=2'd1; a_wr<=1; alu_op<=`AD;
 					count <= 8;
 				end
 
 				else if (count == 8) begin
-					ext_flag<=0;
+					mdata_mux<=0; mem_wr<=1;
 					count <= 9;
 				end
 
 				else if (count == 9) begin
-					x_mux<=2'd1; x_wr<=1;
+					ext_flag<=0;
 					count <= 10;
 				end
 
 				else if (count == 10) begin
-					y_mux<=3'd2; y_wr<=1;
+					x_mux<=2'd1; x_wr<=1;
 					count <= 11;
 				end
 
 				else if (count == 11) begin
+					y_mux<=3'd2; y_wr<=1;
+					count <= 12;
+				end
+
+				else if (count == 12) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= Load;
 				end
@@ -286,37 +301,42 @@ module controlPulses (
 			end
 
 			Xch : begin
+				// wait for mem to output
 				if (count == 0) begin
-					maddr_mux<=1; g_mux<=0; g_wr<=1;
-					count <= 1;
+					count <=1;
 				end
 
 				else if (count == 1) begin
-					mdata_mux<=0; mem_wr<=1;
+					maddr_mux<=1; g_mux<=0; g_wr<=1;
 					count <= 2;
 				end
 
 				else if (count == 2) begin
-					a_mux<=2'd3; a_wr<=1;
+					mdata_mux<=0; mem_wr<=1;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
-					ext_flag<=0;
+					a_mux<=2'd3; a_wr<=1;
 					count <= 4;
 				end
 
 				else if (count == 4) begin
-					x_mux<=2'd1; x_wr<=1;
+					ext_flag<=0;
 					count <= 5;
 				end
 
 				else if (count == 5) begin
-					y_mux<=3'd2; y_mux<=1;
+					x_mux<=2'd1; x_wr<=1;
 					count <= 6;
 				end
 
 				else if (count == 6) begin
+					y_mux<=3'd2; y_mux<=1;
+					count <= 7;
+				end
+
+				else if (count == 7) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= Load;
 				end
@@ -324,32 +344,37 @@ module controlPulses (
 			end
 
 			Cs : begin
+				// wait for mem to output
 				if (count == 0) begin
-					maddr_mux<=1; g_mux<=0; g_wr<=1; a_mux<=2'd0; a_wr<=1;
-					count <= 1;
+					count <=1;
 				end
 
 				else if (count == 1) begin
-					a_mux<=2'd2; a_wr<=1;
+					maddr_mux<=1; g_mux<=0; g_wr<=1; a_mux<=2'd0; a_wr<=1;
 					count <= 2;
 				end
 
 				else if (count == 2) begin
-					ext_flag<=0;
+					a_mux<=2'd2; a_wr<=1;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
-					x_mux<=2'd1; x_wr<=1;
+					ext_flag<=0;
 					count <= 4;
 				end
 
 				else if (count == 4) begin
-					y_mux<=3'd2; y_wr<=1;
-					count <= 4;
+					x_mux<=2'd1; x_wr<=1;
+					count <= 5;
 				end
 
 				else if (count == 5) begin
+					y_mux<=3'd2; y_wr<=1;
+					count <= 6;
+				end
+
+				else if (count == 6) begin
 					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= Load;
 				end
@@ -357,27 +382,32 @@ module controlPulses (
 			end
 
 			Ts : begin
+				// wait for mem to output
 				if (count == 0) begin
-					mdata_mux<=0; mem_wr<=1;
-					count <= 1;
+					count <=1;
 				end
 
 				else if (count == 1) begin
-					ext_flag<=0;
+					mdata_mux<=0; mem_wr<=1;
 					count <= 2;
 				end
 
 				else if (count == 2) begin
-					x_mux<=2'd1; x_wr<=1;
+					ext_flag<=0;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
-					y_mux<=3'd2; y_mux<=1;
+					x_mux<=2'd1; x_wr<=1;
 					count <= 4;
 				end
 
 				else if (count == 4) begin
+					y_mux<=3'd2; y_mux<=1;
+					count <= 5;
+				end
+
+				else if (count == 5) begin
 					z_mux<=2'd1; z_wr<=1;
 					state <= Load;
 				end
@@ -385,138 +415,23 @@ module controlPulses (
 			end
 
 			Ad : begin
+				// wait for mem to output
 				if (count == 0) begin
-					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
-					count <= 1;
+					count <=1;
 				end
 
 				else if (count == 1) begin
-					y_mux<=3'd1; y_wr<=1;
+					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
 					count <= 2;
 				end
 
 				else if (count == 2) begin
+					y_mux<=3'd1; y_wr<=1;
+					count <= 3;
+				end
+
+				else if (count == 3) begin
 					a_mux<=2'd1; a_wr<=1; alu_op<=`AD;
-					count <= 3;
-				end
-
-				else if (count == 3) begin
-					ext_flag<=0;
-					count <= 4;
-				end
-
-				else if (count == 4) begin
-					x_mux<=2'd1; x_wr<=1;
-					count <= 5;
-				end
-
-				else if (count == 5) begin
-					y_mux<=3'd2; y_wr<=1;
-					count <= 6;
-				end
-
-				else if (count == 6) begin
-					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
-				end
-
-			end
-
-			Mask : begin
-				if (count == 0) begin
-					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
-					count <= 1;
-				end
-
-				else if (count == 1) begin
-					y_mux<=3'd1; y_wr<=1;
-					count <= 2;
-				end
-
-				else if (count == 2) begin
-					a_mux<=2'd1; a_wr<=1; alu_op<=`MASK;
-					count <= 3;
-				end
-
-				else if (count == 3) begin
-					ext_flag<=0;
-					count <= 4;
-				end
-
-				else if (count == 4) begin
-					x_mux<=2'd1; x_wr<=1;
-					count <= 5;
-				end
-
-				else if (count == 5) begin
-					y_mux<=3'd2; y_wr<=1;
-					count <= 6;
-				end
-
-				else if (count == 6) begin
-					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
-				end
-
-			end
-
-			Su : begin
-				if (count == 0) begin
-					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
-					count <= 1;
-				end
-
-				else if (count == 1) begin
-					y_mux<=3'd1; y_wr<=1;
-					count <= 2;
-				end
-
-				else if (count == 2) begin
-					a_mux<=2'd1; a_wr<=1; alu_op<=`SU;
-					count <= 3;
-				end
-
-				else if (count == 3) begin
-					ext_flag<=0;
-					count <= 4;
-				end
-
-				else if (count == 4) begin
-					x_mux<=2'd1; x_wr<=1;
-					count <= 5;
-				end
-
-				else if (count == 5) begin
-					y_mux<=3'd2; y_wr<=1;
-					count <= 6;
-				end
-
-				else if (count == 6) begin
-					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
-					state <= Load;
-				end
-
-			end
-
-			Mp : begin
-
-				if (count == 0) begin
-					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
-					count <= 1;
-				end
-
-				else if (count == 1) begin
-					y_mux<=3'd1; y_wr<=1;
-					count <= 2;
-				end
-
-				else if (count == 2) begin
-					lp_mux<=1; lp_wr<=1; alu_op<=`MP0;
-					count <= 3;
-				end
-
-				else if (count == 3) begin
-					a_mux<=2'd1; a_wr<=1; alu_op<=`MP1;
 					count <= 4;
 				end
 
@@ -536,6 +451,140 @@ module controlPulses (
 				end
 
 				else if (count == 7) begin
+					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
+					state <= Load;
+				end
+
+			end
+
+			Mask : begin
+				// wait for mem to output
+				if (count == 0) begin
+					count <=1;
+				end
+
+				else if (count == 1) begin
+					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
+					count <= 2;
+				end
+
+				else if (count == 2) begin
+					y_mux<=3'd1; y_wr<=1;
+					count <= 3;
+				end
+
+				else if (count == 3) begin
+					a_mux<=2'd1; a_wr<=1; alu_op<=`MASK;
+					count <= 4;
+				end
+
+				else if (count == 4) begin
+					ext_flag<=0;
+					count <= 5;
+				end
+
+				else if (count == 5) begin
+					x_mux<=2'd1; x_wr<=1;
+					count <= 6;
+				end
+
+				else if (count == 6) begin
+					y_mux<=3'd2; y_wr<=1;
+					count <= 7;
+				end
+
+				else if (count == 7) begin
+					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
+					state <= Load;
+				end
+
+			end
+
+			Su : begin
+				// wait for mem to output
+				if (count == 0) begin
+					count <=1;
+				end
+
+				else if (count == 1) begin
+					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
+					count <= 2;
+				end
+
+				else if (count == 2) begin
+					y_mux<=3'd1; y_wr<=1;
+					count <= 3;
+				end
+
+				else if (count == 3) begin
+					a_mux<=2'd1; a_wr<=1; alu_op<=`SU;
+					count <= 4;
+				end
+
+				else if (count == 4) begin
+					ext_flag<=0;
+					count <= 5;
+				end
+
+				else if (count == 5) begin
+					x_mux<=2'd1; x_wr<=1;
+					count <= 6;
+				end
+
+				else if (count == 6) begin
+					y_mux<=3'd2; y_wr<=1;
+					count <= 7;
+				end
+
+				else if (count == 7) begin
+					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
+					state <= Load;
+				end
+
+			end
+
+			Mp : begin
+				// wait for mem to output
+				if (count == 0) begin
+					count <=1;
+				end
+
+				else if (count == 1) begin
+					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
+					count <= 2;
+				end
+
+				else if (count == 2) begin
+					y_mux<=3'd1; y_wr<=1;
+					count <= 3;
+				end
+
+				else if (count == 3) begin
+					lp_mux<=1; lp_wr<=1; alu_op<=`MP0;
+					count <= 4;
+				end
+
+				else if (count == 4) begin
+					a_mux<=2'd1; a_wr<=1; alu_op<=`MP1;
+					count <= 5;
+				end
+
+				else if (count == 5) begin
+					ext_flag<=0;
+					count <= 6;
+				end
+
+				else if (count == 6) begin
+					x_mux<=2'd1; x_wr<=1;
+					count <= 7;
+				end
+
+				else if (count == 7) begin
+					y_mux<=3'd2; y_wr<=1;
+					count <= 8;
+				end
+
+				else if (count == 8) begin
 					z_mux<=2'd1; z_mux<=1; alu_op<=`AD;
 					state <= Load;
 				end
@@ -544,42 +593,47 @@ module controlPulses (
 
 			Dv : begin
 
+				// wait for mem to output
 				if (count == 0) begin
-					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
-					count <= 1;
+					count <=1;
 				end
 
 				else if (count == 1) begin
-					y_mux<=3'd1; y_wr<=1;
+					maddr_mux<=1; x_mux<=2'd0; x_wr<=1;
 					count <= 2;
 				end
 
 				else if (count == 2) begin
-					lp_mux<=1; lp_wr<=1; alu_op<=`DV0;
+					y_mux<=3'd1; y_wr<=1;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
-					a_mux<=2'd1; a_wr<=1; alu_op<=`DV1;
+					lp_mux<=1; lp_wr<=1; alu_op<=`DV0;
 					count <= 4;
 				end
 
 				else if (count == 4) begin
-					ext_flag<=0;
+					a_mux<=2'd1; a_wr<=1; alu_op<=`DV1;
 					count <= 5;
 				end
 
 				else if (count == 5) begin
-					x_mux<=2'd1; x_wr<=1;
+					ext_flag<=0;
 					count <= 6;
 				end
 
 				else if (count == 6) begin
-					y_mux<=3'd2; y_wr<=1;
+					x_mux<=2'd1; x_wr<=1;
 					count <= 7;
 				end
 
 				else if (count == 7) begin
+					y_mux<=3'd2; y_wr<=1;
+					count <= 8;
+				end
+
+				else if (count == 8) begin
 					z_mux<=2'd1; z_mux<=1; alu_op<=`AD;
 					state <= Load;
 				end
@@ -587,8 +641,16 @@ module controlPulses (
 			end
 
 			Extend : begin
-				ext_flag <= 1;
-				state <= Load;
+				// wait for mem to output
+				if (count == 0) begin
+					count <=1;
+				end
+
+				else if (count == 1) begin
+					ext_flag <= 1;
+					state <= Load;
+				end
+
 			end
 
 		endcase
