@@ -24,7 +24,8 @@ module agc
   reg[15:0] regY,regX,regLP,regG,regQ, regB,regA,regZ;
   reg extraflag;
   initial extraflag = 0;
-  initial regZ[15:1] = 15'd11;
+  initial regZ = 16'b10110;
+  initial regB = 16'b0100000000010100;
 
   //Control Pulse Driven FSM
   controlPulses control(.clk(clk),.opcode(regB[15:13]),.qc(regB[12:11]),.extracode(extraflag),.ext_flag(new_extraflag),.mem_wr(mem_WE),.lp_wr(LP_WE), .g_wr(G_WE), .q_wr(Q_WE), .b_wr(B_WE), .a_wr(A_WE), .y_wr(Y_WE), .x_wr(X_WE), .z_wr(Z_WE), .maddr_mux(MAddr_MUX), .mdata_mux(data_in_MUX), .lp_mux(LP_MUX), .g_mux(G_MUX), .b_mux(B_MUX), .q_mux(Q_MUX), .a_mux(A_MUX), .x_mux(X_MUX), .z_mux(Z_MUX), .y_mux(Y_MUX), .alu_op(alu_op));
