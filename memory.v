@@ -9,6 +9,7 @@ module memory (
 	input[11:0] memAddress,
 	input[15:0] dataIn,
 	input writeEnable,
+	input[2:0] opcode,
 
 	input[15:0] regZ, regX, regY, regA, regB, regQ, regG, regLP,
 
@@ -27,6 +28,7 @@ memLogic memLogic(
 	.fBank(fBank),
 	.superBank(superBank),
 	.memAddress(memAddress),
+	.opcode(opcode),
 	.finalAddress(finalAddress1)
 );
 
