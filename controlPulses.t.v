@@ -76,6 +76,14 @@ module testcontrolpulses();
 		clk = 0; #10
 		clk = 1; #10
 
+		
+		clk = 0; #10
+		clk = 1; #10
+
+
+		clk = 0; #10
+		clk = 1; #10
+
 		if (pulses.state != 5'd11) begin
 			failed = 1; 
 			$display("Not in EXTEND");
@@ -83,6 +91,7 @@ module testcontrolpulses();
 
 		clk = 0; #10
 		clk = 1; #10
+
 
 		clk = 0; #10
 		clk = 1; #10
