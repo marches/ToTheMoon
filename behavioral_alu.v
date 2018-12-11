@@ -23,9 +23,6 @@ always @(*) begin
   if (B[15] == 1 && command != 5 && command != 6) begin  D <= -(~B[15:1]); end
   else if (B[15] == 1 && (command == 5 || command == 6)) begin D <= ~B[15:1]; end
   else D <= B[15:1];
-
-  //Multiply
-  product <= C*D;
 end
 //32 BIT AND
 genvar i;
@@ -37,15 +34,18 @@ for (i = 0; i < 15; i = i + 1)
   end
 endgenerate
 
-always @(C, D)begin
+always @(C, D, command)begin
+
+  //Multiply
+  product = C*D;
   case(command)
   0: begin result = C+D; end   //ADD
-  1: begin result = C-D; end   //SUB
+  1: begin result = D-C; end   //SUB
   2: begin result = resultAND; end //AND
   3: begin result = product[14:0]; end //MP0
   4: begin result = product[29:15]; end //MP1
-  5: begin result = C%D; end //DV0
-  6: begin result = C/D; end //DV1
+  5: begin result = D%C; end //DV0
+  6: begin result = D/C; end //DV1
   endcase
   if (result[14] == 1 && command != 2 && A[15] != B[15] && command != 5 && command != 6) res = ~(-result);
   else if (command == 6 && A[15] != B[15]) res = ~result;
