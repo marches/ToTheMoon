@@ -365,7 +365,7 @@ module controlPulses (
 
 			Ts : begin
 				if (count == 0) begin
-					mdata_mux<=0; mem_wr<=1;
+					mdata_mux<=0; mem_wr<=1; maddr_mux<=1;
 					count <= 1;
 				end
 

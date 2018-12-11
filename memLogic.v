@@ -6,12 +6,13 @@ module memLogic (
 	input[4:0] fBank,
 	input superBank,
 	input[11:0] memAddress,
+	input[2:0] opcode,
 	output reg[15:0] finalAddress	
 );
 
 always @(*) begin
 
-	if (memAddress[11:10] == 2'b00) begin
+	if (memAddress[11:10] == 2'b00 || opcode == 3'b101) begin
 		if(memAddress[9:8] == 2'b11) begin
 			finalAddress <= {5'b0, eBank, memAddress[7:0]};
 		end // if(memAddress[10:9] === 2'b11)

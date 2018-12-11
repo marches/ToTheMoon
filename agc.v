@@ -45,7 +45,7 @@ module agc
   assign PC_addr = regZ[12:1];
 
   //Interfacing with memory
-  memory mem(.clk(clk),.eBank(eBank),.fBank(fBank),.superBank(superBank),.memAddress(mAddr),.dataIn(regA),.writeEnable(mem_WE),.regZ(regZ),.regX(regX),.regY(regY),.regA(regA),.regB(regB),.regQ(regQ),.regG(regG),.regLP(regLP),.result(memOut));
+  memory mem(.clk(clk),.eBank(eBank),.fBank(fBank),.superBank(superBank),.memAddress(mAddr),.dataIn(regA),.writeEnable(mem_WE),.opcode(regB[15:13]),.regZ(regZ),.regX(regX),.regY(regY),.regA(regA),.regB(regB),.regQ(regQ),.regG(regG),.regLP(regLP),.result(memOut));
 
   //Address for memory mux
   assign mAddr = (MAddr_MUX == 0) ? PC_addr : ((MAddr_MUX == 1) ? S : regA);
