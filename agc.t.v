@@ -18,7 +18,7 @@ module agcTest ();
 	$dumpfile("cpufirsttest.vcd");
 	$dumpvars();
 
-	#2000 $finish();
+	#20000 $finish();
 
 	end
 
