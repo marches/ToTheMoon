@@ -602,21 +602,21 @@ module controlPulses (
 			Extend : begin
 				if (count == 0) begin
 					ext_flag<=1;
-					count <= 2
+					count <= 1;
+				end
+
+				else if (count == 1) begin
+					x_mux<=2'd1; x_wr<=1;
+					count <= 2;
 				end
 
 				else if (count == 2) begin
-					x_mux<=2'd1; x_wr<=1;
+					y_mux<=3'd2; y_wr<=1;
 					count <= 3;
 				end
 
 				else if (count == 3) begin
-					y_mux<=3'd2; y_wr<=1;
-					count <= 4;
-				end
-
-				else if (count == 4) begin
-					z_mux<=2'd1; z_mux<=1; alu_op<=`AD;
+					z_mux<=2'd1; z_wr<=1; alu_op<=`AD;
 					state <= preLoad;
 					count <=0;
 				end
