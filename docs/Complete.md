@@ -3,19 +3,20 @@
 Our Block 1 simulation program successfully runs a test program that is pre-loaded into its memory, similar to programs on the actual AGC, which were loaded into memory to be accessed by the operator at different points in the flight. We aimed to test all of our functionalities in this test. As such we Add, subtract, multiply, divide, transfer control(similar to jump register), mask(and), extend, clear and subtract(invert), store word(TS), and exchange a word from memory(CS). Each of these functionalities were shown to work.  
 
 ## Our Overall System  
-We designed our system to have two main subcomponents, the ALU and the Memory modules. The registers are represented in the block diagram below with MUX's going to them. In actuality in the original AGCs, the registers were actually folded into the memory and were accessible through similar muxes to the way we have considered them but were also addressable memory words. Although not depicted in this block diagram, largely for readability, we have incorporated this functionality by porting each of the 8 flip-flop registers into and out of memory such that one can pull the value of register LP or A and such by accessing mem(reg_address). The register addresses are as follows:  
+We designed our system to have two main subcomponents, the ALU and the Memory modules. The registers are represented in the block diagram below with MUX's going to them. In actuality in the original AGCs, the registers were actually folded into the memory and were accessible through similar muxes to the way we have considered them but were also addressable memory words. Although not depicted in this block diagram, largely for readability, we have incorporated this functionality by porting each of the 8 flip-flop registers into and out of memory such that one can pull the value of register LP or A and such by accessing mem(reg_address). The register addresses are as follows:
 
-Register   Memory Address  
-  regZ            0  
-  regX            1  
-  regY            2  
-  regA            3  
-  regB            4  
-  regQ            5  
-  regG            6  
-  regLP           8  
-  16'd1           9  
-  16'd2          10  
+| Register | Memory Address |
+| :------: | :----------: |
+| regZ     |      0       |
+| regX     |      1       |
+| regY     |      2       |
+| regA     |      3       |
+| regB     |      4       |
+| regQ     |      5       |
+| regG     |      6       |
+| regLP    |      8       |
+| 16'd1    |      9       |
+| 16'd2    |     10       |
 
 The other portion of our system not fully illustrated in our block diagram is our control pulses, finite state machine. In our block diagram, yellow arrows indicate the control signals. These control signals discussed more in the Instructions and FSM page, control all of the subroutines of each operation enabling the write capabilities of registers and memory, controlling the MUX selections, and driving the operation of the ALU.  
 
