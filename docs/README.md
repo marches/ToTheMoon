@@ -31,16 +31,16 @@ After completing a lot of research, we set out to create a simulation of Block 1
 
 Here are links to the breakdown of each major component:
 
-- [Memory](docs/Memory.md)
-- [ALU](docs/ALU.md)
-- [Instructions and FSM](docs/Instructions.md)
+- [Memory](Memory.md)
+- [ALU](ALU.md)
+- [Instructions and FSM](Instructions.md)
 
 And to see how all of it works together visit:
-- [Test Files](docs/together.md) 
-- [It Works!](docs/Complete.md)
+- [Test Files](together.md) 
+- [It Works!](Complete.md)
 
 Our references can be found here:
-- [References](docs/references.md)
+- [References](references.md)
 
 ## What We Struggled With
 
