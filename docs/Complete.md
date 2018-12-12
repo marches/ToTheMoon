@@ -57,6 +57,7 @@ The following image shows the GTKwave trace of the program counter (regZ), instr
 
 
 Our expected results compared to our actual results are shown as follows:
+
 | EXPECTED RESULT | ACTUAL RESULT |
 | :-------------: | :-----------: |
 
