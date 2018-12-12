@@ -58,8 +58,7 @@ The following image shows the GTKwave trace of the program counter (regZ), instr
 
 Our expected results compared to our actual results are shown as follows:
 
-| EXPECTED RESULT | ACTUAL RESULT |
-| :-------------: | :-----------: |
+| EXPECTED RESULT | | | | | ACTUAL RESULT | | | | |
 
 |regZ | regB | regA | regLP | regQ | regZ | regB | regA | regLP | regQ | PASS: |
 | :-: | :--: | :--: | :---: | :--: | :--: | :--: | :--: | :---: | :--: | :---: |
@@ -79,4 +78,4 @@ Our expected results compared to our actual results are shown as follows:
 | 24  |  TC  | -2   |   4   | 24   |  24  |  TC  | -2   |   4   | 24   |   Y   |
 | 27  |  AD  |  0   |   4   | 24   |  27  |  AD  |  0   |   4   | 24   |   Y   |
 
-Overall: PASS  
+Overall: **PASS**  
