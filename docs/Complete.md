@@ -23,7 +23,8 @@ The other portion of our system not fully illustrated in our block diagram is ou
 
 ## Our Test Program
 
-The program loaded into the memory is as follows where OP is our op-code, QC is our quarter-code, ADDRESS is the address portion of our command, P is our parity bit, and OPERATION is the translated op code and address in a readable format:  
+The program loaded into the memory is as follows where OP is our op-code, QC is our quarter-code, ADDRESS is the address portion of our command, P is our parity bit, and OPERATION is the translated op code and address in a readable format:
+
 | OP | QC  | ADDRESS | P | OPERATION |
 | :--: | :--: | :---:| :--: | :--: |
 | 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10)) |
