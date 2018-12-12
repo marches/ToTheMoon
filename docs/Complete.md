@@ -20,7 +20,7 @@ We designed our system to have two main subcomponents, the ALU and the Memory mo
 
 The other portion of our system not fully illustrated in our block diagram is our control pulses, finite state machine. In our block diagram, yellow arrows indicate the control signals. These control signals discussed more in the Instructions and FSM page, control all of the subroutines of each operation enabling the write capabilities of registers and memory, controlling the MUX selections, and driving the operation of the ALU.  
 
-![Block Diagram](./images/block_diagram.png)  
+![Block Diagram](./images/block_diagram_Background.png)  
 
 ## Our Test Program
 
