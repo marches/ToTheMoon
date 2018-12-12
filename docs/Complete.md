@@ -46,12 +46,6 @@ The program loaded into the memory is as follows where OP is our op-code, QC is 
 | 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10)) |
 
 
-| a | b | c | d | e |
-|---|---|---|---|---|
-| f | g | h | i | j |
-| k | l | m | n | o |
-| p | q | r | s | t |
-
 It should be noted that the subtract appears in GTKwave as an ADD as it is the same command as ADD, but the preceding extend command indicates the command is subtract. In addition, the no-ops should never be executed as the TC should skip to the last ADD command.
 
 ## Our AGC in Action  
@@ -61,23 +55,26 @@ The following image shows the GTKwave trace of the program counter (regZ), instr
 ![Working GTKwave Trace](./images/AGC_Working.JPG)  
 
 
-Our expected results compared to our actual results are shown as follows:  
+Our expected results compared to our actual results are shown as follows:
+| EXPECTED RESULT | ACTUAL RESULT |
+| :-------------: | :-----------: |
 
-Expected: regZ  regB  regA  regLP regQ    Actual: regZ  regB  regA  regLP regQ    PASS:
-           11    AD    2      X    X               11    AD    2      X    X        Y  
-           12    AD    4      X    X               12    AD    4      X    X        Y  
-           13    AD    6      X    X               13    AD    6      X    X        Y  
-           14    TS    6      X    X               14    TS    6      X    X        Y  
-           15    MSK   2      X    X               15    MSK   2      X    X        Y  
-           16    XCH   6      X    X               16    XCH   6      X    X        Y  
-           17    EXT   6      X    X               17    EXT   6      X    X        Y  
-           18    SUB   4      X    X               18    SUB   4      X    X        Y  
-           19    EXT   4      X    X               19    EXT   4      X    X        Y  
-           20    DIV   2      X    0               20    DIV   2      X    0        Y  
-           21    EXT   2      X    0               21    EXT   2      X    0        Y  
-           22    MP    0      4    0               22    MP    0      4    0        Y  
-           23    CS   -2      4    0               23    CS   -2      4    0        Y  
-           24    TC   -2      4   24               24    TC   -2      4   24        Y  
-           27    AD    0      4   24               27    AD    0      4   24        Y  
+|regZ | regB | regA | regLP | regQ | regZ | regB | regA | regLP | regQ | PASS: |
+| :-: | :--: | :--: | :---: | :--: | :--: | :--: | :--: | :---: | :--: | :---: |
+| 11  |  AD  |  2   |   X   |  X   |  11  |  AD  |  2   |   X   |  X   |   Y   |
+| 12  |  AD  |  4   |   X   |  X   |  12  |  AD  |  4   |   X   |  X   |   Y   |
+| 13  |  AD  |  6   |   X   |  X   |  13  |  AD  |  6   |   X   |  X   |   Y   |
+| 14  |  TS  |  6   |   X   |  X   |  14  |  TS  |  6   |   X   |  X   |   Y   |
+| 15  |  MSK |  2   |   X   |  X   |  15  |  MSK |  2   |   X   |  X   |   Y   |
+| 16  |  XCH |  6   |   X   |  X   |  16  |  XCH |  6   |   X   |  X   |   Y   |
+| 17  |  EXT |  6   |   X   |  X   |  17  |  EXT |  6   |   X   |  X   |   Y   |
+| 18  |  SUB |  4   |   X   |  X   |  18  |  SUB |  4   |   X   |  X   |   Y   |
+| 19  |  EXT |  4   |   X   |  X   |  19  |  EXT |  4   |   X   |  X   |   Y   |
+| 20  |  DIV |  2   |   X   |  0   |  20  |  DIV |  2   |   X   |  0   |   Y   |
+| 21  |  EXT |  2   |   X   |  0   |  21  |  EXT |  2   |   X   |  0   |   Y   |
+| 22  |  MP  |  0   |   4   |  0   |  22  |  MP  |  0   |   4   |  0   |   Y   |
+| 23  |  CS  | -2   |   4   |  0   |  23  |  CS  | -2   |   4   |  0   |   Y   |
+| 24  |  TC  | -2   |   4   | 24   |  24  |  TC  | -2   |   4   | 24   |   Y   |
+| 27  |  AD  |  0   |   4   | 24   |  27  |  AD  |  0   |   4   | 24   |   Y   |
 
 Overall: PASS  
