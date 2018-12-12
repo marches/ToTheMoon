@@ -17,3 +17,7 @@ The Apollo guidance computer had bit-spliced adder/subtracter and a multicycle m
 ## Our Implementation
 
 Because of our time limitations, and to fully utilize Verilog's built in structures, we decided to make a behavioral verilog ALU. This meant that to add, instead of making a bit-spliced adder, we simply used the "+" command.  Because Verilog is setup for use on modern computing platforms, it uses exclusively two's compliment by default. As such we chose to convert our one's compliment numbers into two's compliment and then operate on the two's compliment version, then convert that number back to one's compliment. Then we stored the upper product of multiplications in the accumulator, the lower product in the LP register, the quotient in the accumulator, and the remainder in the Q register. In this way our system functions in the same manner as the original AGC, except in the time performance area where our model is considerably faster.
+
+
+
+[Back To Home](README.md)
