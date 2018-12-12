@@ -1,5 +1,5 @@
 # Our Functional AGC
-  
+
 Our Block 1 simulation program successfully runs a test program that is pre-loaded into its memory, similar to programs on the actual AGC, which were loaded into memory to be accessed by the operator at different points in the flight. We aimed to test all of our functionalities in this test. As such we Add, subtract, multiply, divide, transfer control(similar to jump register), mask(and), extend, clear and subtract(invert), store word(TS), and exchange a word from memory(CS). Each of these functionalities were shown to work.  
 
 ## Our Overall System  
@@ -24,24 +24,25 @@ The other portion of our system not fully illustrated in our block diagram is ou
 ## Our Test Program
 
 The program loaded into the memory is as follows where OP is our op-code, QC is our quarter-code, ADDRESS is the address portion of our command, P is our parity bit, and OPERATION is the translated op code and address in a readable format:  
-OP  QC   ADDRESS  P ->  OPERATION  
-110 00 0000001010 1 -> ADD(regA, mem(d10))  
-110 00 0000001010 1 -> ADD(regA, mem(d10))  
-110 00 0000001010 1 -> ADD(regA, mem(d10))  
-101 10 0001100100 1 -> TS(d100)  
-111 00 0000001010 0 -> MASK(regA,mem(d10))  
-101 11 0001100100 0 -> XCH(d100)  
-101 01 0000000000 0 -> EXTEND  
-110 00 0000001010 1 -> SUB(regA, mem(d10)) -(Appears in GTKwave as an ADD as it is the same command as ADD, but extend command indicates subtract)  
-101 01 0000000000 0 -> EXTEND  
-001 00 0000001010 1 -> DIV(regA,mem(d10))  
-101 01 0000000000 0 -> EXTEND  
-111 00 0000001010 1 -> MULT(regA,mem(d10))  
-100 00 0000001010 1 -> CS(mem(d10))  
-000 00 0000011010 0 -> TC(d27)  
-000 00 0000000000 0 -> no_op - (This should never run because of the TC)  
-000 00 0000000000 0 -> no_op - (This should never run because of the TC)  
-110 00 0000001010 1 -> ADD(regA, mem(d10))  
+| OP | QC  | ADDRESS | P | OPERATION |
+| :--: | :--: | :---:| :--: | :--: |  
+| 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10)) |
+| 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10))|
+| 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10))|
+| 101 | 10 | 0001100100 | 1 | TS(d100)|
+| 111 | 00 | 0000001010 | 0 | MASK(regA,mem(d10))|
+| 101 | 11 | 0001100100 | 0 | XCH(d100)|
+| 101 | 01 | 0000000000 | 0 | EXTEND|
+| 110 | 00 | 0000001010 | 1 | SUB(regA, mem(d10)) -(Appears in GTKwave as an ADD as it is the same command as ADD, but extend command indicates subtract)|
+| 101 | 01 | 0000000000 | 0 | EXTEND|
+| 001 | 00 | 0000001010 | 1 | DIV(regA,mem(d10))|
+| 101 | 01 | 0000000000 | 0 | EXTEND|
+| 111 | 00 | 0000001010 | 1 | MULT(regA,mem(d10))|
+| 100 | 00 | 0000001010 | 1 | CS(mem(d10))|
+| 000 | 00 | 0000011010 | 0 | TC(d27)|
+| 000 | 00 | 0000000000 | 0 | no_op - (This should never run because of the TC)|
+| 000 | 00 | 0000000000 | 0 | no_op - (This should never run because of the TC)|
+| 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10))|
 
 
 ## Our AGC in Action  
