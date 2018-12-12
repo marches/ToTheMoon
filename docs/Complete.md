@@ -28,23 +28,23 @@ The program loaded into the memory is as follows where OP is our op-code, QC is 
 
 | OP | QC  | ADDRESS | P | OPERATION |
 | :--: | :--: | :---:| :--: | :--: |
-| 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10)) |
-| 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10)) |
-| 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10)) |
-| 101 | 10 | 0001100100 | 1 | TS(d100) |
-| 111 | 00 | 0000001010 | 0 | MASK(regA,mem(d10)) |
-| 101 | 11 | 0001100100 | 0 | XCH(d100) |
-| 101 | 01 | 0000000000 | 0 | EXTEND |
-| 110 | 00 | 0000001010 | 1 | SUB(regA, mem(d10)) |
-| 101 | 01 | 0000000000 | 0 | EXTEND |
-| 001 | 00 | 0000001010 | 1 | DIV(regA,mem(d10)) |
-| 101 | 01 | 0000000000 | 0 | EXTEND |
-| 111 | 00 | 0000001010 | 1 | MULT(regA,mem(d10)) |
-| 100 | 00 | 0000001010 | 1 | CS(mem(d10)) |
-| 000 | 00 | 0000011010 | 0 | TC(d27) |
-| 000 | 00 | 0000000000 | 0 | no_op |
-| 000 | 00 | 0000000000 | 0 | no_op |
-| 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10)) |
+| 110 | 00 | 0000001010 | 1 | **ADD**(regA, mem(d10)) |
+| 110 | 00 | 0000001010 | 1 | **ADD**(regA, mem(d10)) |
+| 110 | 00 | 0000001010 | 1 | **ADD**(regA, mem(d10)) |
+| 101 | 10 | 0001100100 | 1 | **TS**(d100) |
+| 111 | 00 | 0000001010 | 0 | **MASK**(regA,mem(d10)) |
+| 101 | 11 | 0001100100 | 0 | **XCH**(d100) |
+| 101 | 01 | 0000000000 | 0 | **EXTEND** |
+| 110 | 00 | 0000001010 | 1 | **SUB**(regA, mem(d10)) |
+| 101 | 01 | 0000000000 | 0 | **EXTEND** |
+| 001 | 00 | 0000001010 | 1 | **DIV**(regA,mem(d10)) |
+| 101 | 01 | 0000000000 | 0 | **EXTEND** |
+| 111 | 00 | 0000001010 | 1 | **MULT**(regA,mem(d10)) |
+| 100 | 00 | 0000001010 | 1 | **CS**(mem(d10)) |
+| 000 | 00 | 0000011010 | 0 | **TC**(d27) |
+| 000 | 00 | 0000000000 | 0 | **no_op** |
+| 000 | 00 | 0000000000 | 0 | **no_op** |
+| 110 | 00 | 0000001010 | 1 | **ADD**(regA, mem(d10)) |
 
 
 It should be noted that the subtract appears in GTKwave as an ADD as it is the same command as ADD, but the preceding extend command indicates the command is subtract. In addition, the no-ops should never be executed as the TC should skip to the last ADD command.
