@@ -3,6 +3,23 @@ Our Block 1 simulation program successfully runs a test program that is pre-load
 
 ## Our Overall System
 We designed our system to have two main subcomponents, the ALU and the Memory modules. The registers are represented in the block diagram below with MUX's going to them. In actuality in the original AGCs, the registers were actually folded into the memory and were accessible through similar muxes to the way we have considered them but were also addressable memory words. Although not depicted in this block diagram, largely for readability, we have incorporated this functionality by porting each of the 8 flip-flop registers into and out of memory such that one can pull the value of register LP or A and such by accessing mem(reg_address). The register addresses are as follows:
+
+Register   Memory Address
+  regZ            0
+  regX            1
+  regY            2
+  regA            3
+  regB            4
+  regQ            5
+  regG            6
+  regLP           8
+  16'd1           9
+  16'd2          10
+
+The other portion of our system not fully illustrated in our block diagram is our control pulses, finite state machine. In our block diagram, yellow arrows indicate the control signals. These control signals discussed more in the Instructions and FSM page, control all of the subroutines of each operation enabling the write capabilities of registers and memory, controlling the MUX selections, and driving the operation of the ALU.
+
+![Block Diagram](block_diagram.png)
+
 ## Our Test Program
 
 The program loaded into the memory is as follows where OP is our op-code, QC is our quarter-code, ADDRESS is the address portion of our command, P is our parity bit, and OPERATION is the translated op code and address in a readable format:
@@ -28,6 +45,10 @@ OP  QC   ADDRESS  P ->  OPERATION
 
 ## Our AGC in Action
 The following image shows the GTKwave trace of the program counter (regZ), instructions (regB), the accumulator (regA), the quotient/return register (regQ), and the lower product used in multiplication (regLP). The program counter increments by 1 through until it hits the transfer control command at which point it jumps to the stated address.
+
+
+![Working GTKwave Trace](AGC_Working.JPG)
+
 
 Our expected results compared to our actual results are shown as follows:
 
