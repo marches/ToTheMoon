@@ -2,17 +2,21 @@
 `timescale 1 ns / 1 ps
 
 module testMemLogic();
+	reg clk;
 	reg[2:0] eBank;
 	reg[4:0] fBank;
 	reg superBank;
 	reg[11:0] memAddress;
+	reg[2:0] opcode;
 	wire[15:0] finalAddress;
 
-	memLogic memLogic(eBank, fBank, superBank, memAddress, finalAddress);
+	memLogic memLogic(clk, eBank, fBank, superBank, memAddress, opcode, finalAddress);
 
 	initial begin
 
 		$display("Starting memory logic test");
+		clk = 0;
+		opcode = 2'b0; 
 
 		// Testing erasable - don't need eBank
 		eBank = 0; fBank = 0; superBank = 0;

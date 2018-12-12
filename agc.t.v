@@ -15,7 +15,7 @@ module agcTest ();
 
 	$readmemb("AndMaskTsXch.mem", dut.mem.memory, 4'd11);
 
-	$dumpfile("cpufirsttest.vcd");
+	$dumpfile("agcTest.vcd");
 	$dumpvars();
 
 	#20000 $finish();

@@ -9,14 +9,16 @@ module testMemory();
 	reg[11:0] memAddress;
 	reg[15:0] dataIn;
 	reg writeEnable;
+	reg[2:0] opcode;
 	reg[15:0] regZ, regX, regY, regA, regB, regQ, regG, regLP;
 	wire[15:0] result;
 	wire[15:0] finalAddress;
 
-	memory memory(clk, eBank, fBank, superBank, memAddress, dataIn, writeEnable, regZ, regX, regY, regA, regB, regQ, regG, regLP, result, finalAddress);
+	memory memory(clk, eBank, fBank, superBank, memAddress, dataIn, writeEnable, opcode, regZ, regX, regY, regA, regB, regQ, regG, regLP, result, finalAddress);
 
 	initial begin 
 
+		opcode = 2'b0;
 		regZ = 15'd10;
 		regX = 15'd11;
 		regY = 15'd12;

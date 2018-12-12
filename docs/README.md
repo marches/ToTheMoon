@@ -31,12 +31,16 @@ After completing a lot of research, we set out to create a simulation of Block 1
 
 Here are links to the breakdown of each major component:
 
-- Memory
-- ALU
-- Instructions and FSM
+- [Memory](Memory.md)
+- [ALU](ALU.md)
+- [Instructions and FSM](Instructions.md)
 
-And to see how all of the components interact visit:
-- Putting it all together 
+And to see how all of it works together visit:
+- [Test Files](together.md) 
+- [It Works!](Complete.md)
+
+Our references can be found here:
+- [References](references.md)
 
 ## What We Struggled With
 
@@ -52,40 +56,10 @@ The Apollo Guidance Computer also only had 8 flip-flop memory registers, and so 
 
 At the end of this project, we struggled a lot with running our test bench in Verilog. In previous labs, we were successfully able to initialize the memory with the instruction set, but for some reason we really struggled to do that in this project. 
 
+At the end of the project our biggest issue was lack of time and small bugs in our code. Our finite state machine was almost 700 lines long, so it was difficult to debug. 
+
 ### Extensions of the Project
 
 If we had more time, we would have implemented some of the instructions in Block 2 to allow us to actually run the code that was run on the Apollo Guidance Computer during the mission to the moon. Currently, our instruction set is too limited to run any of the actual commands that were preformed during that mission. 
 
 
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/marches/ToTheMoon/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
