@@ -19,7 +19,7 @@ Register   Memory Address
 
 The other portion of our system not fully illustrated in our block diagram is our control pulses, finite state machine. In our block diagram, yellow arrows indicate the control signals. These control signals discussed more in the Instructions and FSM page, control all of the subroutines of each operation enabling the write capabilities of registers and memory, controlling the MUX selections, and driving the operation of the ALU.  
 
-![Block Diagram](block_diagram.png)  
+![Block Diagram](./images/block_diagram.png)  
 
 ## Our Test Program
 
@@ -49,7 +49,7 @@ The program loaded into the memory is as follows where OP is our op-code, QC is 
 The following image shows the GTKwave trace of the program counter (regZ), instructions (regB), the accumulator (regA), the quotient/return register (regQ), and the lower product used in multiplication (regLP). The program counter increments by 1 through until it hits the transfer control command at which point it jumps to the stated address.  
 
 
-![Working GTKwave Trace](AGC_Working.JPG)  
+![Working GTKwave Trace](./images/AGC_Working.JPG)  
 
 
 Our expected results compared to our actual results are shown as follows:  
