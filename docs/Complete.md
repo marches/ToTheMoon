@@ -44,6 +44,13 @@ The program loaded into the memory is as follows where OP is our op-code, QC is 
 | 000 | 00 | 0000000000 | 0 | no_op |
 | 110 | 00 | 0000001010 | 1 | ADD(regA, mem(d10)) |
 
+
+| a | b | c | d | e |
+|---|---|---|---|---|
+| f | g | h | i | j |
+| k | l | m | n | o |
+| p | q | r | s | t |
+
 It should be noted that the subtract appears in GTKwave as an ADD as it is the same command as ADD, but the preceding extend command indicates the command is subtract. In addition, the no-ops should never be executed as the TC should skip to the last ADD command.
 
 ## Our AGC in Action  
