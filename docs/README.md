@@ -31,12 +31,15 @@ After completing a lot of research, we set out to create a simulation of Block 1
 
 Here are links to the breakdown of each major component:
 
-- Memory
-- ALU
-- Instructions and FSM
+- [Memory](docs/Memory.md)
+- [ALU](docs/ALU.md)
+- [Instructions and FSM](docs/Instructions.md)
 
-And to see how all of the components interact visit:
-- Putting it all together 
+And to see how all of it works together visit:
+- [Test Files](docs/together.md) 
+- [It Works!](docs/Complete.md)
+
+
 
 ## What We Struggled With
 
@@ -51,6 +54,8 @@ There was a similar issue with the memory. The memory address in the Apollo Guid
 The Apollo Guidance Computer also only had 8 flip-flop memory registers, and so during each instruction, data had to be frequently moved between the registers and the erasable memory so that data was never lost and the right data was always in the correct place.
 
 At the end of this project, we struggled a lot with running our test bench in Verilog. In previous labs, we were successfully able to initialize the memory with the instruction set, but for some reason we really struggled to do that in this project. 
+
+At the end of the project our biggest issue was lack of time and small bugs in our code. Our finite state machine was almost 700 lines long, so it was difficult to debug. 
 
 ### Extensions of the Project
 
