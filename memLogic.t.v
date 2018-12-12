@@ -15,6 +15,8 @@ module testMemLogic();
 	initial begin
 
 		$display("Starting memory logic test");
+		clk = 0;
+		opcode = 2'b0; 
 
 		// Testing erasable - don't need eBank
 		eBank = 0; fBank = 0; superBank = 0;
