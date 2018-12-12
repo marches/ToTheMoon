@@ -18,7 +18,7 @@ module agcTest ();
 	$dumpfile("agcTest.vcd");
 	$dumpvars();
 
-	#20000 $finish();
+	#3000 $finish();
 
 	end
 
